@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oceanic Airlines</title>
+
+<style>
+    /* Reset some default styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Global styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Taskbar styles */
+    .taskbar {
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        background-color: #333;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    .taskbar .logo img {
+        height: 40px;
+        margin-left: 20px;
+    }
+
+    .taskbar .logo h4 {
+        margin: 0 0 0 10px;
+    }
+
+    .taskbar .navigation {
+        list-style: none;
+        display: flex;
+        margin-right: 20px;
+    }
+
+    .taskbar .navigation li {
+        margin-right: 20px;
+    }
+
+    .taskbar .navigation li:last-child {
+        margin-right: 0;
+    }
+
+    .taskbar .navigation a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    .taskbar .navigation a:hover {
+        color: #ff5722;
+    }
+
+    /* Booking options styles */
+    .booking-options {
+        text-align: center;
+        padding: 100px 0;
+    }
+
+    .booking-options h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .booking-options form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .booking-options label,
+    .booking-options input {
+        margin: 5px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .booking-options input[type="date"] {
+        padding: 8px;
+    }
+
+    .booking-options button {
+        background-color: #ff5722;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    /* Flight details styles */
+    .flight-details {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding: 40px 0;
+        background-color: #fff;
+    }
+
+    .flight-card {
+        max-width: 300px;
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    .flight-card img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .flight-card h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .flight-card p {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .flight-card a {
+        display: inline-block;
+        background-color: #ff5722;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    /* Footer styles */
+    footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        /* Taskbar */
+        .taskbar {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .taskbar .navigation {
+            margin-top: 20px;
+        }
+
+        /* Booking Options */
+        .booking-options form {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .booking-options label,
+        .booking-options input {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        /* Flight Details */
+        .flight-details {
+            flex-direction: column;
+        }
+
+        .flight-card {
+            margin: 20px 0;
+        }
+    }
+
+    /* Booking Options Button */
+    .search-flights-button button {
+        background-color: rgba(255, 255, 255, 0.8);
+        color: #333;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background-color 0.3s;
+    }
+
+    .search-flights-button button:hover {
+        background-color: #ff5722;
+        color: #fff;
+    }
+
+    /* Featured Destinations */
+    .featured-destinations {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding: 40px 0;
+        background-color: #fff;
+    }
+
+    .destination-card {
+        max-width: 300px;
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    .destination-card img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .destination-card h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .destination-card p {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .destination-card a {
+        display: inline-block;
+        background-color: #ff5722;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    /* Testimonials */
+    .testimonials {
+        text-align: center;
+        padding: 40px 0;
+        background-color: #f9f9f9;
+    }
+
+    .testimonial {
+        max-width: 600px;
+        margin: 0 auto 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .testimonial p {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .testimonial .author {
+        font-weight: bold;
+    }
+
+    /* Subscription Form */
+    .subscription {
+        text-align: center;
+        padding: 40px 0;
+        background-color: #333;
+        color: #fff;
+    }
+
+    .subscription h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .subscription p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .subscription form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .subscription input[type="email"] {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    .subscription button {
+        background-color: #ff5722;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    /* Featured Promotions */
+    .promotions {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding: 40px 0;
+        background-color: #fff;
+    }
+
+    .promotion-card {
+        max-width: 300px;
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    .promotion-card img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .promotion-card h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .promotion-card p {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .promotion-card a {
+        display: inline-block;
+        background-color: #ff5722;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    /* Contact Information */
+    .contact-info {
+        text-align: center;
+        padding: 40px 0;
+        background-color: #f9f9f9;
+        color: #333;
+    }
+
+    .contact-info h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .contact-info p {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .contact-info a {
+        color: #ff5722;
+        text-decoration: none;
+    }
+/* subscription */
+
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Subscription form styles */
+        .subscription {
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .subscription h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .subscription p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .subscription form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .subscription input[type="email"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            width: 300px;
+        }
+
+        .subscription button {
+            background-color: #ff5722;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .booking-options {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .booking-options h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .booking-options form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .booking-options label,
+        .booking-options input {
+            margin: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .booking-options input[type="date"] {
+            padding: 8px;
+        }
+
+        .search-flights-button button {
+            background-color: #ff5722;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .flight-results {
+            margin-top: 20px;
+        }
+
+        .flight-card {
+            max-width: 300px;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        .flight-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .flight-card p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .flight-card button {
+            background-color: #ff5722;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+          /* Frequent Flyer Program styles */
+          .frequent-flyer {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #f9f9f9;
+        }
+
+        .frequent-flyer h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .frequent-flyer p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .frequent-flyer a {
+            color: #ff5722;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+         /* Flight Status styles */
+         .flight-status {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #fff;
+        }
+
+        .flight-status h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .flight-status p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .flight-status button {
+            background-color: #ff5722;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* Banner styles with background image */
+.banner {
+    background-image: url('Images/bckimg.jpg'); /* Replace 'paradise.jpg' with your image file */
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: #fff;
+    padding: 100px 0;
+}
+
+.banner h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.banner p {
+    font-size: 24px;
+}
+
+
+/* SERVICES */
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Section styles */
+        .services-entertainment {
+            text-align: center;
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .services-entertainment h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .services-entertainment p {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        /* Service card styles */
+        .service-card {
+            display: inline-block;
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .service-card img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .service-card {
+                max-width: 100%;
+            }
+        }
+
+        .star-alliance-logo img {
+            width: 250px; /* Set the desired width */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+
+        body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply a background color and font styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navigation Bar Styles */
+.navigation-bar {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+.navigation-bar ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+
+.navigation-bar li {
+    margin: 0 20px;
+}
+
+.navigation-bar a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+</style>
+<body>
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <div class="logo">
+            <img src="Images/logo.jpg" alt="Airline Logo">
+            <h4>Oceania Airlines</h4>
+        </div>
+
+        <ul class="navigation">
+            <li><a href="files/Bookingpage.html">Book and manage</a></li>
+            <li><a href="files/Flights.html">Flights</a></li>
+            <li><a href="files/Contactus.html">Contact Us</a></li>
+            <li><a href="files/SignIn.html">SignIn</a></li>
+        </ul>
+    </div>
+
+    <div class="banner">
+        <h1>Welcome to Oceania Airlines</h1>
+        <p>Your Gateway to Paradise</p>
+    </div>
+
+
+    <!-- Booking Options -->
+    
+         <script>
+        function searchFlights() {
+            // Get values from the form inputs
+            const from = document.getElementById("from").value;
+            const to = document.getElementById("to").value;
+            const date = document.getElementById("date").value;
+
+            // Dummy flight schedule data
+            const flightSchedule = [
+                {
+                    origin: "Vijayawada",
+                    destination: "Reunion",
+                    aircraft: "Airbus A340",
+                    travelTime: "7 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Gluten-free",
+                    departureTime: ["09:00 AM"],
+                    flightNumber: "OA 101"
+                },
+                {
+                    origin: "Reunion",
+                    destination: "Vijayawada",
+                    aircraft: "Airbus A330",
+                    travelTime: "7 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Gluten-free",
+                    departureTime: [ "02:30 PM",],
+                    flightNumber: "OA 102"
+                },
+                {
+                    origin: "Vijayawada",
+                    destination: "Port Moresby",
+                    aircraft: "Boeing 777",
+                    travelTime: "8 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Vegan",
+                    departureTime: ["08:00 AM"],
+                    flightNumber: "OA 103"
+                },
+                {
+                    origin: "Port Moresby",
+                    destination: "Vijayawada",
+                    aircraft: "Boeing 777",
+                    travelTime: "8 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Vegan",
+                    departureTime: ["02:30 PM"],
+                    flightNumber: "OA 104"
+                },
+                {
+                    origin: "Vijayawada",
+                    destination: "Suva",
+                    aircraft: "Boeing 777",
+                    travelTime: "8 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Vegan",
+                    departureTime: [ "09:30 AM"],
+                    flightNumber: "OA 105"
+                },
+                {
+                    origin: "Suva",
+                    destination: "Vijayawada",
+                    aircraft: "Boeing 777",
+                    travelTime: "8 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Vegan",
+                    departureTime: ["08:00 PM"],
+                    flightNumber: "OA 106"
+                },
+                {
+                    origin: "Vijayawada",
+                    destination: "Saint-dennis",
+                    aircraft: "Boeing 747",
+                    travelTime: "8 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Vegan",
+                    departureTime: ["08:00 AM"],
+                    flightNumber: "OA 107"
+                },
+                {
+                    origin: "Saint-dennis",
+                    destination: "vijayawada",
+                    aircraft: "Boeing 747",
+                    travelTime: "8 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Vegan",
+                    departureTime: ["08:00 PM"],
+                    flightNumber: "OA 108"
+                },
+                {
+                    origin: "Visakapatnam",
+                    destination: "Saint-dennis",
+                    aircraft: "Boeing 767",
+                    travelTime: "8 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Vegan",
+                    departureTime: ["02:30 PM"],
+                    flightNumber: "OA 109"
+                },
+                {
+                    origin: "Saint - Dennis",
+                    destination: "Visakapatnam",
+                    aircraft: "Boeing 767",
+                    travelTime: "8 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Vegan",
+                    departureTime: [ "09:30 PM"],
+                    flightNumber: "OA 110"
+                },
+                {
+                    origin: "Chennai",
+                    destination: "Suva",
+                    aircraft: "Airbus A340",
+                    travelTime: "9 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Gluten-free",
+                    departureTime: ["11:00 AM"],
+                    flightNumber: "OA 111"
+                },
+                {
+                    origin: "Suva",
+                    destination: "Chennai",
+                    aircraft: "Airbus A340",
+                    travelTime: "9 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Gluten-free",
+                    departureTime: [ "11:15 PM"],
+                    flightNumber: "OA 112"
+                },
+                {
+                    origin: "Visakhapatnam",
+                    destination: "Port-Moresby",
+                    aircraft: "Airbus A350",
+                    travelTime: "8.5 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Gluten-free",
+                    departureTime: [ "03:15 PM"],
+                    flightNumber: "OA 113"
+                },
+                {
+                    origin: "Port-Moresby",
+                    destination: "Visakaptnam",
+                    aircraft: "Airbus A350",
+                    travelTime: "8.5 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Gluten-free",
+                    departureTime: ["10:00 AM"],
+                    flightNumber: "OA 114"
+                },
+                {
+                    origin: "Kochi",
+                    destination: "Port-Moresby",
+                    aircraft: "Airbus A330",
+                    travelTime: "8.5 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Gluten-free",
+                    departureTime: ["08:45 PM"],
+                    flightNumber: "OA 115"
+                },
+                {
+                    origin: "Port-Moresby",
+                    destination: "Kochi",
+                    aircraft: "Airbus A330",
+                    travelTime: "8.5 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Gluten-free",
+                    departureTime: ["09:30 AM"],
+                    flightNumber: "OA 116"
+                },
+                {
+                    origin: "Kochi",
+                    destination: "Reunion",
+                    aircraft: "Boeing 787",
+                    travelTime: "8 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Vegan",
+                    departureTime: ["02:15 PM",],
+                    flightNumber: "OA 117"
+                },
+                {
+                    origin: "Reunion",
+                    destination: "Kochi",
+                    aircraft: "Boeing 787",
+                    travelTime: "8 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Vegan",
+                    departureTime: ["07:30 PM"],
+                    flightNumber: "OA 118"
+                },
+                {
+                    origin: "Suva",
+                    destination: "Banglore",
+                    aircraft: "Airbus A340",
+                    travelTime: "9 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Gluten-free",
+                    departureTime: [ "3:00 PM"],
+                    flightNumber: "OA 119"
+                },
+                {
+                    origin: "Banglore",
+                    destination: "Suva",
+                    aircraft: "Airbus A340",
+                    travelTime: "9 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Gluten-free",
+                    departureTime: [ "7:15 PM"],
+                    flightNumber: "OA 120"
+                },
+                {
+                    origin: "Suva",
+                    destination: "Tuvalu",
+                    aircraft: "ATR 42-600",
+                    travelTime: "1 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Gluten-free",
+                    departureTime: [ "12:00 PM"],
+                    flightNumber: "OA 182"
+                },
+                {
+                    origin: "Tuvalu",
+                    destination: "Suva",
+                    aircraft: "ATR 42-600",
+                    travelTime: "1 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Gluten-free",
+                    departureTime: [ "1:00 PM"],
+                    flightNumber: "OA 8504"
+                },
+                {
+                    origin: "Suva",
+                    destination: "Tuvalu",
+                    aircraft: "ATR 42-600",
+                    travelTime: "1 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Gluten-free",
+                    departureTime: [ "5:00 PM"],
+                    flightNumber: "OA 214"
+                },
+                {
+                    origin: "Tuvalu",
+                    destination: "Suva",
+                    aircraft: "ATR 42-600",
+                    travelTime: "1 hours",
+                    foodOptions: "Vegetarian, Non-vegetarian, Gluten-free",
+                    departureTime: [ "7:30 PM"],
+                    flightNumber: "OA 447"
+                },
+
+
+            ];
+
+            // Filter flights based on the from and to locations
+            const filteredFlights = flightSchedule.filter(
+                (flight) =>
+                    (flight.origin === from && flight.destination === to) ||
+                    (flight.origin === to && flight.destination === from)
+            );
+
+            // Display the filtered flights
+            const flightResults = document.getElementById("flight-results");
+            flightResults.innerHTML = ""; // Clear previous results
+
+            if (filteredFlights.length > 0) {
+                for (const flight of filteredFlights) {
+                    const flightCard = document.createElement("div");
+                    flightCard.classList.add("flight-card");
+                    flightCard.innerHTML = `
+                        <h3>${flight.origin} to ${flight.destination}</h3>
+                        <p>Departure Times:</p>
+                        <ul>
+                            <li>${flight.departureTime[0]}</li>
+                            <li>${flight.departureTime[1]}</li>
+                            <li>${flight.departureTime[2]}</li>
+                        </ul>
+                        <p>Aircraft Type: ${flight.aircraft}</p>
+                        <p>Travel Time: ${flight.travelTime}</p>
+                        <p>Food Options: ${flight.foodOptions}</p>
+                        <button onclick="bookFlight()">Book Flight</button>
+                    `;
+                    flightResults.appendChild(flightCard);
+                }
+            } else {
+                flightResults.textContent = "No flights available for the selected route.";
+            }
+        }
+
+        function bookFlight() {
+            // You can implement the booking logic here or redirect to a booking page
+            alert("Booking functionality to be implemented.");
+        }   
+
+        function bookFlight(flight) {
+    // Store the flight details in localStorage
+    localStorage.setItem("selectedFlight", JSON.stringify(flight));
+
+
+    // Navigate to a new page (ticket.html) where the user can view and print the ticket
+    window.location.href = "files/ticket.html";
+}
+       
+    </script>
+ <div class="booking-options">
+    <h1>Search Flights</h1>
+    <form>
+        <label for="from">From:</label>
+        <input type="text" id="from" name="from" placeholder="Departure City" required>
+
+        <label for="to">To:</label>
+        <input type="text" id="to" name="to" placeholder="Arrival City" required>
+
+
+        
+
+        <label for="date">Departure Date:</label>
+        <input type="date" id="date" name="date" required>
+    </form>
+    <br>
+    <br>
+    <div class="search-flights-button">
+        <button type="button" onclick="searchFlights()">Search Flights</button>
+    </div>
+</div>
+
+<div id="flight-results" class="flight-results"></div>
+
+<div class="flight-results" id="flight-results">
+    <!-- Flight results will be displayed here -->
+</div>
+
+<!-- Featured Destinations -->
+    <div class="featured-destinations">
+        <h2>Change the way you travel</h2>
+        <br>
+        <br>
+        <div class="destination-card">
+            <img src="Images/fiji.jpg" alt="Fiji">
+            <h3>Suva, Fiji</h3>
+            <p>Discover the stunning landscapes and vibrant culture of Suva, Fiji. Book your flight now!</p>
+            <a href="https://www.booking.com/city/fj/suva.en.html?aid=1610687;label=suva-KL7iwK8IXhjqTVDPggqtewS379257978877:pl:ta:p1:p2:ac:ap:neg:fi:tikwd-314431987582:lp9181986:li:dec:dm:ppccp=UmFuZG9tSVYkc2RlIyh9YfpWGnRw6lOGgfEoJVv7zYo;ws=&gad_source=1&gclid=EAIaIQobChMI4ICrg7HmgQMV9aRmAh017w1xEAAYASAAEgItivD_BwE">Show Available Hotels</a>
+        </div>
+
+        <div class="destination-card">
+            <img src="Images/reunion.jpg" alt="Reunion">
+            <h3>Saint-Denis, Reunion</h3>
+            <p>Experience the beauty of Saint-Denis, Reunion Island. Plan your trip with Oceania Airlines.</p>
+            <a href="https://www.booking.com/city/fr/saint-denis.en-gb.html">Show Available Hotels</a>
+        </div>
+
+        <div class="destination-card">
+            <img src="Images/PNG.jpg" alt="PNG">
+            <h3>Port Moresby, Papua New Guinea</h3>
+            <p>Explore the coral reefs and natural wonders of Port Moresby. Fly with Oceania Airlines!</p>
+            <a href="https://www.booking.com/city/pg/port-moresby.en.html?aid=306395;label=port-moresby-CieyQd5rZ8mbzkOuWdD0CQS383056758643:pl:ta:p115:p2:ac:ap:neg:fi:tikwd-360066909:lp9181986:li:dec:dm:ppccp=UmFuZG9tSVYkc2RlIyh9YZVcNNsENnH02-pWD53qm9c;ws=&gad_source=1&gclid=EAIaIQobChMIsqvT2LDmgQMVxwetBh3VSQYNEAAYASAAEgLCZvD_BwE">Show Available Hotels</a>
+        </div>
+    </div>
+
+    
+    <!-- Flight Status -->
+    <div class="flight-status">
+        <h2>Check Flight Status</h2>
+        <p>Want to know the status of your flight? Enter your flight details below to get real-time updates.</p>
+        <a href="files/checkstatus.html" class="flight-status-button">Check Status</a>
+    </div>
+    
+    
+<div class="container">
+    <!-- Services & In-flight Entertainment Section -->
+    <div class="services-entertainment">
+        <h2>Services</h2>
+        <p>Enjoy a range of services and in-flight entertainment options during your journey with Oceanic Airlines.</p>
+
+        <!-- Service Cards -->
+        <div class="service-card">
+            <img src="Images/meals.jpg" alt="In-flight Meals">
+            <h3>In-flight Meals</h3>
+            <p>Indulge in a variety of delicious meals served on board, including vegetarian, non-vegetarian, and gluten-free options.</p>
+        </div>
+
+        <div class="service-card">
+            <img src="Images/wifi.jpg" alt="In-flight Wi-Fi">
+            <h3>In-flight Wi-Fi</h3>
+            <p>Stay connected with high-speed in-flight Wi-Fi, allowing you to browse, chat, and work while in the air.</p>
+        </div>
+
+        <div class="service-card">
+            <img src="Images/IFE.jpg" alt="Entertainment">
+            <h3>Entertainment</h3>
+            <p>Enjoy a wide selection of movies, TV shows, music, and games on your personal entertainment screen.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Frequent Flyer Program -->
+<div class="frequent-flyer">
+    <h2>Frequent Flyer Program</h2>
+    <p>Join our <strong>FlyAway Rewards</strong> program and earn miles on every journey. Enjoy exclusive benefits, upgrades, and discounts. <a href="files/frequent flyer.html">Learn More</a></p>
+</div>
+
+    <!-- Customer Testimonials -->
+    <div class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <br>
+        <div class="testimonial">
+            <p>"I had an amazing experience flying with this Holiday airline. The service was top-notch, and the staff was friendly."</p>
+            <p class="author">- Praneeth</p>
+        </div>
+
+        <div class="testimonial">
+            <p>"Booking flights has never been easier. I found great deals and had a smooth journey."</p>
+            <p class="author">- Sai</p>
+        </div>
+    </div>
+
+    <!-- Featured Promotions -->
+    <div class="promotions">
+        <h2>Don't Miss Our Special Promotions</h2>
+        <div class="promotion-card">
+            <img src="Images/tuvalu.jpg" alt="Summer Sale">
+            <h3>Summer Sale</h3>
+            <p>Book your summer flights to Tuvalu from Suva and enjoy exclusive discounts. Limited time offer!</p>
+            <a href="files/summersale.html">View Deals</a>
+        </div>
+
+        <div class="promotion-card">
+            <img src="Images/Mauritius.jpg" alt="Holiday Destinations">
+            <h3>Holiday Destinations</h3>
+            <p>Discover amazing holiday destinations with our exclusive package deals from Vijayawada</p>
+            <a href="files/Holidaydestinaions.html">Explore Offers</a>
+        </div>
+    </div>
+
+    <div class="navigation-bar">
+        <ul>
+            <li><a href="files/baggage.html">Baggage Policy</a></li>
+            <li><a href="files/seatselection.html">Seat Selection</a></li>
+            <li><a href="files/tra">Travel Insurance</a></li>
+            <li><a href="files/FAQ.html">FAQ</a></li>
+            <li><a href="files/NewsUpdates.html">News & Updates</a></li>
+        </ul>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="contact-info">
+        <h2>Contact Information</h2>
+        <p>If you have any questions or need assistance, our customer support team is here to help.</p>
+        <p>Email: Oceania@airlines.com</p>
+        <p>Phone: +91 123 456 7890</p>
+        <p>HQ: Opp LEPL, Vijayawada, India</p>
+        <p>Visit us: <a href="files/Visitus.html">OceaniaAirlines.com</a></p>
+    </div>
+
+    <!-- Subscription Form -->
+    <div class="container">
+        <!-- Subscription form -->
+        <div class="subscription">
+            <h2>Subscribe for Updates</h2>
+            <p>Get the latest news and special offers delivered to your inbox.</p>
+            <form action="files/subscribe.html" method="post">
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                <button type="submit">Subscribe</button>
+                <h1>OCEANIA AIRLINES</h1>
+                <div class="star-alliance-logo">
+                    <img src="Images/staralliancelogo.jpg" alt="Star Alliance Member Logo">
+</form>
+</div>
+</div>
+
+    <footer>
+        <p>&copy; Developed by Praneeth</p>
+    </footer>
+</body>
+</html>

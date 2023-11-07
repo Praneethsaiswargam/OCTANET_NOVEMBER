@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Oceania Airlines</title>
+</head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.contact-info {
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form input[type="submit"] {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact-form input[type="submit"]:hover {
+    background-color: #333;
+}
+
+footer {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+
+.logo img {
+    max-width: 100px;
+    height: auto;
+}
+
+</style>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../Images\logo.jpg" alt="Oceanic Airlines Logo">
+            <h1>Oceanic Airlines</h1>
+        </div>
+        <h1>Contact Us - Oceania Airlines</h1>
+    </header>
+    <div class="container">
+        <section class="contact-info">
+            <h2>Contact Information</h2>
+            <p><strong>Address:</strong>  Opp LEPL, Vijayawada, India</p>
+            <p><strong>Email:</strong> Oceania@airlines.com</p>
+            <p><strong>Phone:</strong> +91 1234 567 890</p>
+        </section>
+        <section class="contact-form">
+            <h2>Contact Form</h2>
+            <form action="submit_form.php" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <input type="submit" value="Submit">
+            </form>
+        </section>
+    </div>
+    <footer>
+        &copy; OceaniaAirlines
+    </footer>
+</body>
+</html>
